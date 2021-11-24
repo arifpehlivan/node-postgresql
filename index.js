@@ -13,6 +13,7 @@ app.get('/', (req, res) =>{
 
 app.get('/students', db.getStudents)
 app.post('/student', db.getStudentByName)
+app.delete('/students', db.delStudentByName)
 app.post('/students', db.createStudent)
 app.put('/students', db.updateStudent)
 

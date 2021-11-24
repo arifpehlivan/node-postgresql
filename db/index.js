@@ -57,9 +57,21 @@ const getStudentByName = (request, response) =>{
     })
 }
 
+const delStudentByName = (request, response) =>{
+    const { name } = request.body
+    client.query('DELETE FROM students WHERE name = $1', [name], (err, res) =>{
+        if(!err) {
+            response.status(200).send('user succesfully deleted');
+        } else {
+            console.log(err)
+        }
+    })
+}
+
 module.exports = {
     getStudents,
     createStudent,
     updateStudent,
-    getStudentByName
+    getStudentByName,
+    delStudentByName
 }
