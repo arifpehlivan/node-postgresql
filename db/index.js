@@ -34,7 +34,20 @@ const createStudent = (request, response) =>{
     })
 }
 
+const updateStudent = (request, response) =>{
+    const { name, surname, age, location} = request.body;
+    client.query('UPDATE students SET name = $1, surname= $2, age = $3, location = $4 WHERE name = $1',
+    [name, surname, age, location], (err, res) =>{
+        if(!err) {
+            response.status(201).send(`user ${name} ${surname}`);
+        } else {
+            console.log(err)
+        }
+    })
+}
+
 module.exports = {
     getStudents,
-    createStudent
+    createStudent,
+    updateStudent
 }
