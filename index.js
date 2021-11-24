@@ -1,19 +1,11 @@
-const { Client } = require('pg');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const client = new Client({
-    host: 'localhost',
-    user: 'postgres',
-    port: '5432',
-    password: '1020',
-    database: 'postgres'
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.listen(8080, () =>{
+    console.log('port 8080 listening...')
 });
-
-client.connect();
-
-client.query('SELECT  * FROM students', (err, res) =>{
-    if(!err) {
-        console.log(res.rows)
-    } else {
-        console.log(err)
-    }
-})
