@@ -22,4 +22,19 @@ const getStudents = (request, response) =>{
     })
 }
 
-module.exports = {getStudents}
+const createStudent = (request, response) =>{
+    const { name, surname, age, location} = request.body;
+    client.query('INSERT INTO students VALUES ($1, $2, $3, $4)',
+    [name, surname, age, location], (err, res) =>{
+        if(!err) {
+            response.status(201).send(`user ${name} ${surname}`);
+        } else {
+            console.log(err)
+        }
+    })
+}
+
+module.exports = {
+    getStudents,
+    createStudent
+}

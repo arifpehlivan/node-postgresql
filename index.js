@@ -12,6 +12,7 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/students', db.getStudents)
+app.post('/students', db.createStudent)
 
 app.listen(8080, () =>{
     console.log('port 8080 listening...')
