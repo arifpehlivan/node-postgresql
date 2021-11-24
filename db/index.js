@@ -46,8 +46,20 @@ const updateStudent = (request, response) =>{
     })
 }
 
+const getStudentByName = (request, response) =>{
+    const { name } = request.body
+    client.query('SELECT  * FROM students WHERE name = $1', [name], (err, res) =>{
+        if(!err) {
+            response.status(200).json(res.rows);
+        } else {
+            console.log(err)
+        }
+    })
+}
+
 module.exports = {
     getStudents,
     createStudent,
-    updateStudent
+    updateStudent,
+    getStudentByName
 }
